@@ -1,0 +1,46 @@
+﻿<Window x:Class="PngFinder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SearchMaster" Height="400" Width="660">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ComboBox místo TextBoxu pro typ souboru -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+            <Label Content="Typ souboru:" Width="100"/>
+            <ComboBox x:Name="FileTypeCombo" Width="200">
+                <ComboBoxItem Content="*.png + *.jpg" IsSelected="True"/>
+                <ComboBoxItem Content="*.docx + *.pdf"/>
+                <ComboBoxItem Content="*.txt"/>
+                <ComboBoxItem Content="*.zip + *.7z"/>
+                <ComboBoxItem Content="*.mp4 + *.mkv"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,5">
+            <Label Content="Cesta:" Width="100"/>
+            <TextBox x:Name="DirectoryBox" Width="350" IsReadOnly="True" Text=""/>
+            <Button Content="Vybrat" Width="60" Margin="5,0,0,0" Click="BrowseFolder_Click"/>
+            <CheckBox x:Name="UseWorkFolderCheckBox" Content="WORK ? " Margin="10,5" Checked="UseWorkFolderCheckBox_Checked" Unchecked="UseWorkFolderCheckBox_Unchecked"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,5">
+            <Label Content="Hledat výraz:" Width="100"/>
+            <TextBox x:Name="NameContainsBox" Width="210" KeyDown="NameContainsBox_KeyDown"/>
+            <Button Content="Hledat (enter)" Width="100" Margin="5,0,0,0" Click="Search_Click"/>
+            <Button Content="Open" Height="30" Width="100" Margin="5,0,0,0" Click="OpenFile_Click"/>
+            <Button Content="Editovat (picture)" Height="30" Width="100" Margin="5,0,0,0" Click="EditFile_Click"/>
+        </StackPanel>
+
+        <!-- Scretching window na vysku a sirku-->
+        <ListBox x:Name="ResultsList" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+
+
+    </Grid>
+</Window>
